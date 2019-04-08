@@ -1,3 +1,5 @@
+//hello!
+
 ArrayList<Fruit> arr;
 float x, y;
 boolean click;
