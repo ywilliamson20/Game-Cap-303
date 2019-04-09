@@ -6,14 +6,14 @@ float x, y;
 boolean click;
 
 boolean start;
-float menu;
 
 void setup()
 {
-  start = false;
   controlP5 = new ControlP5(this);
-  controlP5.addButton("startButton").setValue(0).setPosition(10,30).setSize(100,32).setCaptionLabel("Start").getCaptionLabel().setSize(10);
-  controlP5.addButton("quitButton").setValue(0).setPosition(10,70).setSize(100,32).setCaptionLabel("Quit").getCaptionLabel().setSize(10);
+  controlP5.addButton("startButton").setValue(0).setPosition(10, 30).setSize(100, 32).setCaptionLabel("Start").getCaptionLabel().setSize(10);
+  controlP5.addButton("quitButton").setValue(0).setPosition(10, 70).setSize(100, 32).setCaptionLabel("Quit").getCaptionLabel().setSize(10);
+
+  start = false;
   size(800, 800);
   background(124, 94, 56);
   arr= new ArrayList<Fruit>();
@@ -60,15 +60,14 @@ void draw()
     }
   } else {
     background(255);
-    translate(width/2 - 50, height/2);
-    textSize(70);
-    text("Smoothie Warrior!", -250, 0);
+   textSize(70);
+    text("Smoothie Warrior!", width/2 - 250, height/2);
   }
 }
 
 void mousePressed()
 {
-  start = true; //menu changes, but need to fix for start and quit buttons to work
+  //start = true; //menu changes, but need to fix for start and quit buttons to work
   for (int i=0; i<arr.size(); i++) {
     float d=dist(mouseX, mouseY, arr.get(i).x, arr.get(i).y);
     if (d<arr.get(i).r)
@@ -80,8 +79,12 @@ void mousePressed()
   }
 }
 
-//void startButton(){
-//  menu = controlP5.getController("startButton").getValue();
-//  background(0);
-//  //start = false;
-//}
+void startButton() {
+  start = true;
+  println("startButton startButton.");
+}
+
+void quitButton() {
+  start = false;
+  println("quitButton quitButton.");
+}
