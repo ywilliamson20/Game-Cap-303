@@ -8,26 +8,16 @@ class Fruit{
     x=xx;
     y=yy;
     //clicked=click;
-    
   }
   
   void display()
   {
     if(!clicked){
-      
     ellipse(x, y, r, r);
     }
-    else{
-      
+    else{ 
        ellipse(x+70, y, r/2, r);
-       ellipse(x, y, r/2, r);
-       
-    }
-    
+       ellipse(x, y, r/2, r);  
+    } 
   }
-  
-  
-
-  
-  
 }
