@@ -16,13 +16,13 @@ void setup()
   start = false;
   size(800, 800);
   background(124, 94, 56);
-  arr= new ArrayList<Fruit>();
-  x=0;
-  y=height;
-  Fruit f= new Fruit(x, y);
+  arr = new ArrayList<Fruit>();
+  x = 0;
+  y =height;
+  Fruit f = new Fruit(x, y);
   arr.add(f);
   fill(255, 0, 0);
-  Fruit f1= new Fruit(width/2, height/2);
+  Fruit f1 = new Fruit(width/2, height/2);
   arr.add(f1);
   fill(255, 0, 0);
 }
@@ -67,13 +67,11 @@ void draw()
 
 void mousePressed()
 {
-  //start = true; //menu changes, but need to fix for start and quit buttons to work
   for (int i=0; i<arr.size(); i++) {
     float d=dist(mouseX, mouseY, arr.get(i).x, arr.get(i).y);
     if (d<arr.get(i).r)
       //if(mouseX<arr.get(0).x+arr.get(0).r&&mouseY<arr.get(0).y+arr.get(0).r)
     {
-
       arr.get(i).clicked=true;
     }
   }
@@ -81,10 +79,10 @@ void mousePressed()
 
 void startButton() {
   start = true;
-  println("startButton startButton.");
+  //println("startButton startButton.");
 }
 
 void quitButton() {
   start = false;
-  println("quitButton quitButton.");
+  //println("quitButton quitButton.");
 }
