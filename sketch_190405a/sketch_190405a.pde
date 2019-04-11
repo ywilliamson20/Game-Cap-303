@@ -4,7 +4,8 @@ ControlP5 controlP5;
 ArrayList<Fruit> arr;
 float x, y;
 boolean click;
-
+float pmx=0;
+float pmy=0;
 boolean start;
 
 void setup()
@@ -69,12 +70,23 @@ void mousePressed()
 {
   for (int i=0; i<arr.size(); i++) {
     float d=dist(mouseX, mouseY, arr.get(i).x, arr.get(i).y);
+    pmx= mouseX;
+    pmy=mouseY;
+
+  }
+}
+
+void mouseDragged()
+{
+  line(pmx,pmy,mouseX,mouseY);
+  for (int i=0; i<arr.size(); i++) {
+    float d=dist(mouseX, mouseY, arr.get(i).x, arr.get(i).y);
     if (d<arr.get(i).r)
-      //if(mouseX<arr.get(0).x+arr.get(0).r&&mouseY<arr.get(0).y+arr.get(0).r)
     {
       arr.get(i).clicked=true;
     }
   }
+  
 }
 
 void startButton() {
