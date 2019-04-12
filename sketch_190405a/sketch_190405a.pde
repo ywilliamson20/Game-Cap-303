@@ -62,7 +62,7 @@ void draw()
   } else {
     background(255);
    textSize(70);
-    text("Smoothie Warrior!", width/2 - 250, height/2);
+    text("Smoothie Warrior!", width/2 - 300, height/2);
   }
 }
 
@@ -83,7 +83,7 @@ void mouseDragged()
     float d=dist(mouseX, mouseY, arr.get(i).x, arr.get(i).y);
     if (d<arr.get(i).r)
     {
-      arr.get(i).clicked=true;
+      arr.get(i).clicked=true; //if knife is in contact with fruit, cut fruit in half!
     }
   }
   

@@ -1,7 +1,7 @@
-class Knife{
+class Bomb{
   //variables here
   
-  Knife(){
+  Bomb(){
   //constructor
   }
   
