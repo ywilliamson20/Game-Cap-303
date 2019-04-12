@@ -1,15 +1,19 @@
+//This class will intialize the fruit objects and be in charge of displaying them
 class Fruit{
+  //variables
   float r;
   float x,y;
   boolean clicked;
   
   Fruit(float xx, float yy){
+    //Constructor
     r=100;
     x=xx;
     y=yy;
-    //clicked=click;
+    
   }
-  
+
+//this function will display the fruit as a whole fruit or sliced into two pieces based on whether its been sliced or not
   void display()
   {
     if(!clicked){
