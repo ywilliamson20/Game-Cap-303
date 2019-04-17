@@ -1,13 +1,15 @@
 //Smoothie Warrior
 //By Lara Disuanco and Yvette Williamson
 import controlP5.*;
-
+import processing.sound.*; //for sounds
 //variables
 ControlP5 controlP5;
 Bomb b;
 ArrayList<Fruit> arr;
 float x, y;
-
+PImage im;
+PImage bim;
+PFont fo;
 float pmx=0;
 float pmy=0;
 boolean start;
@@ -18,12 +20,14 @@ Knife k;
 void setup()
 {
   controlP5 = new ControlP5(this);
-  controlP5.addButton("startButton").setValue(0).setPosition(10, 30).setSize(100, 32).setCaptionLabel("Start").getCaptionLabel().setSize(10);
-  controlP5.addButton("quitButton").setValue(0).setPosition(10, 70).setSize(100, 32).setCaptionLabel("Quit").getCaptionLabel().setSize(10);
-
+  controlP5.addButton("startButton").setValue(0).setPosition(10, 30).setSize(100, 60).setCaptionLabel("Start").getCaptionLabel().setSize(30);
+  controlP5.addButton("quitButton").setValue(0).setPosition(10, 100).setSize(100, 60).setCaptionLabel("Quit").getCaptionLabel().setSize(30);
+  im=loadImage("woodbac.jpg");
+  bim=loadImage("flo_nin.jpg");
   start = false;
   size(800, 800);
-  background(124, 94, 56);
+  //background(124, 94, 56);
+  background(im);
   
   b = new Bomb();
   
@@ -48,8 +52,10 @@ void draw()
 {
   //when start button is pressed, start game
   if (start) {
+    b.update();
+    b.display();
     k. display();
-    background(124, 94, 56);
+    background(im);
     for (int i=0; i<arr.size(); i++) {
     arr.get(i).display();
     
@@ -74,9 +80,12 @@ void draw()
     }
   } else {
     //if game not started, the main menu will be displayed
-    background(255);
-   textSize(70);
-    text("Smoothie Warrior!", width/2 - 300, height/2);
+    background(bim);
+    fill(249, 209, 4);
+    fo=loadFont("HarlowSolid-48.vlw");
+    textFont(fo);
+   textSize(80);
+    text("Smoothie Warrior!", width/2 - 300, height/2-100);
     
     for (int i=0; i<arr.size(); i++) {
       arr.get(i).clicked=false;
