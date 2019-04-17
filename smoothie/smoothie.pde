@@ -4,12 +4,14 @@ import controlP5.*;
 
 //variables
 ControlP5 controlP5;
+Bomb b;
 ArrayList<Fruit> arr;
 float x, y;
-boolean click;
+
 float pmx=0;
 float pmy=0;
 boolean start;
+
 Knife k;
 
 //This function will setup the main menu and intialize objects and locations
@@ -22,6 +24,8 @@ void setup()
   start = false;
   size(800, 800);
   background(124, 94, 56);
+  
+  b = new Bomb();
   
   arr = new ArrayList<Fruit>();
   
@@ -86,8 +90,8 @@ void draw()
 void mousePressed()
 {
   for (int i=0; i<arr.size(); i++) {
-    pmx= mouseX;
-    pmy=mouseY;
+    pmx = mouseX;
+    pmy = mouseY;
 
   }
 }
