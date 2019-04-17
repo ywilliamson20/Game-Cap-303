@@ -10,6 +10,7 @@ boolean click;
 float pmx=0;
 float pmy=0;
 boolean start;
+Knife k;
 
 //This function will setup the main menu and intialize objects and locations
 void setup()
@@ -21,15 +22,20 @@ void setup()
   start = false;
   size(800, 800);
   background(124, 94, 56);
+  
   arr = new ArrayList<Fruit>();
+  
   x = 0;
-  y =height;
+  y = height;
   Fruit f = new Fruit(x, y);
   arr.add(f);
   fill(255, 0, 0);
+  
   Fruit f1 = new Fruit(x+50, y);
   arr.add(f1);
   fill(255, 0, 0);
+  
+  k = new Knife();
 }
 
 
@@ -38,6 +44,7 @@ void draw()
 {
   //when start button is pressed, start game
   if (start) {
+    k. display();
     background(124, 94, 56);
     for (int i=0; i<arr.size(); i++) {
     arr.get(i).display();
