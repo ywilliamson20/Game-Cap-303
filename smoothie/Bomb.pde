@@ -13,10 +13,10 @@ class Bomb {
   }
 
   //update location of bomb
-  void update()
+  void update(int pr)
   {
-    //x+=5;
-    //y+=5;
+    x+=pr;
+    y+=pr;
   }
 
   //display the bomb on screen

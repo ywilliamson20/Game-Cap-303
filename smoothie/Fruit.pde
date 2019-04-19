@@ -18,6 +18,28 @@ class Fruit{
     
   }
 
+  void update(int pr)
+  {
+    if (clicked)
+    {
+      x-=5;
+      y+=5;
+
+    } else
+    {
+      //if fruit is not sliced, it will move upwards then downwards in an arc path
+      if (x<width/2) {
+        x+=pr/2;
+        y-=pr;
+      } else
+      {
+         x+=pr;
+         y+=pr;
+      }
+    }
+    
+    
+  }
 //this function will display the fruit as a whole fruit or sliced into two pieces based on whether its been sliced or not
   void display()
   {

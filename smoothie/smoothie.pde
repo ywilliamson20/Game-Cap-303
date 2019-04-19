@@ -5,6 +5,7 @@ import processing.sound.*; //for sounds
 //variables
 ControlP5 controlP5;
 
+int [] pro;
 ArrayList<Bomb> barr;
 ArrayList<Fruit> arr;
 Knife k;
@@ -34,7 +35,13 @@ void setup()
   start = false;
   
   background(im);
-  
+  pro=new int[10];
+  for(int i =0; i<pro.length; i++)
+  {
+    pro[i]=(int)random(3,4);
+    
+    
+  }
   barr = new ArrayList<Bomb>();
   
   arr = new ArrayList<Fruit>();
@@ -59,31 +66,26 @@ void draw()
 {
   //when start button is pressed, start game
   if (start) {
-    //barr.update();
-    //barr.display();
+    
     k. display();
     background(im);
-    for (int i=0; i<arr.size(); i++) {
+    int i=0;
+    //if(frameCount%5==0){
+   // for (int i=0; i<arr.size(); i++) {
+    arr.get(i).update(pro[i]);
     arr.get(i).display();
     
     //if the fruit is sliced, the slices will drop rapidly and suddenly
-    if (arr.get(i).clicked)
+     //i++;
+     //}
+    //}
+    for(int t=0; t<barr.size();t++)
     {
-      arr.get(i).x-=5;
-      arr.get(i).y+=5;
-
-    } else
-    {
-      //if fruit is not sliced, it will move upwards then downwards in an arc path
-      if (arr.get(i).x<width/2) {
-        arr.get(i).x+=5;
-        arr.get(i).y-=9;
-      } else
-      {
-        arr.get(i).x+=2;
-        arr.get(i).y+=3;
-      }
-    }
+      //barr.update();
+      //barr.display();
+      
+      
+      
     }
   } else {
     //if game not started, the main menu will be displayed
