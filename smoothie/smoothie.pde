@@ -128,6 +128,7 @@ void mouseDragged()
     {
       arr.get(i).clicked=true; //if knife is in contact with fruit, cut fruit in half!
     }
+    s.slice(); //works, but only makes sound the first time
   }
 }
 

@@ -6,7 +6,7 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
-AudioPlayer song;
+AudioPlayer bg, slice;
 Minim minim;
 
 class Sound_effects {
@@ -15,18 +15,23 @@ class Sound_effects {
   Sound_effects(PApplet p) {
     //constructor
     minim = new Minim(p);
-    song = minim.loadFile("cpdojo.mp3");
+    bg = minim.loadFile("cpdojo.mp3");
+    slice = minim.loadFile("whoosh.mp3");
   }
 
   //function for the background music
   void bgm()
   {
-    song.play();
+    bg.play();
+  }
+  
+  void slice(){
+    slice.play();
   }
 }
 
 void stop() {
-  song.close();
+  bg.close();
   minim.stop();
   super.stop();
 }
