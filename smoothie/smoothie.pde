@@ -4,34 +4,42 @@ import controlP5.*;
 import processing.sound.*; //for sounds
 //variables
 ControlP5 controlP5;
-Bomb b;
+
+ArrayList<Bomb> barr;
 ArrayList<Fruit> arr;
+Knife k;
+
 float x, y;
+
 PImage im;
 PImage bim;
 PFont fo;
+
 float pmx=0;
 float pmy=0;
-boolean start;
 
-Knife k;
+boolean start;
 
 //This function will setup the main menu and intialize objects and locations
 void setup()
 {
+  size(800, 800);
+  
   controlP5 = new ControlP5(this);
   controlP5.addButton("startButton").setValue(0).setPosition(10, 30).setSize(100, 60).setCaptionLabel("Start").getCaptionLabel().setSize(30);
   controlP5.addButton("quitButton").setValue(0).setPosition(10, 100).setSize(100, 60).setCaptionLabel("Quit").getCaptionLabel().setSize(30);
   im=loadImage("woodbac.jpg");
   bim=loadImage("flo_nin.jpg");
+  
   start = false;
-  size(800, 800);
-  //background(124, 94, 56);
+  
   background(im);
   
-  b = new Bomb();
+  barr = new ArrayList<Bomb>();
   
   arr = new ArrayList<Fruit>();
+  
+  k = new Knife();
   
   x = 0;
   y = height;
@@ -43,7 +51,6 @@ void setup()
   arr.add(f1);
   fill(255, 0, 0);
   
-  k = new Knife();
 }
 
 
@@ -52,8 +59,8 @@ void draw()
 {
   //when start button is pressed, start game
   if (start) {
-    b.update();
-    b.display();
+    //barr.update();
+    //barr.display();
     k. display();
     background(im);
     for (int i=0; i<arr.size(); i++) {
