@@ -20,13 +20,14 @@ class Sound_effects {
   void bgm()
   {
     minim = new Minim(this);
-    //song = minim.loadFile("insertsonghere");
+    song = minim.loadFile("cpdojo.mp3");
     song.play();
   }
 
-  void stop() {
+  
+}
+void stop() {
     song.close();
     minim.stop();
-    //super.stop();
+    super.stop();
   }
-}

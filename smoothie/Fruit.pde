@@ -13,8 +13,8 @@ class Fruit {
     x=xx;
     y=yy;
     a1 = loadImage ("apple1.png");
-    a2 = loadImage ("apple2.png");
-    a3 = loadImage("apple3.png");
+    a2 = loadImage ("apple2clip.png");
+    a3 = loadImage("apple3clip.png");
   }
 
   void update(int pr)

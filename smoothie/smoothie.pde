@@ -9,6 +9,7 @@ int [] pro;
 ArrayList<Bomb> barr;
 ArrayList<Fruit> arr;
 Knife k;
+Sound_effects s;
 
 float x, y;
 
@@ -46,6 +47,7 @@ void setup()
   arr = new ArrayList<Fruit>();
 
   k = new Knife();
+  s = new Sound_effects();
 
   x = 0;
   y = height;
@@ -58,6 +60,8 @@ void setup()
   fill(255, 0, 0);
 
   score = 0;
+  
+  //s.bgm();
 }
 
 
