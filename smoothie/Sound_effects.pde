@@ -12,22 +12,21 @@ Minim minim;
 class Sound_effects {
   //variables here
 
-  Sound_effects() {
+  Sound_effects(PApplet p) {
     //constructor
+    minim = new Minim(p);
+    song = minim.loadFile("cpdojo.mp3");
   }
 
   //function for the background music
   void bgm()
   {
-    minim = new Minim(this);
-    song = minim.loadFile("cpdojo.mp3");
     song.play();
   }
-
-  
 }
+
 void stop() {
-    song.close();
-    minim.stop();
-    super.stop();
-  }
+  song.close();
+  minim.stop();
+  super.stop();
+}

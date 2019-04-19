@@ -47,7 +47,7 @@ void setup()
   arr = new ArrayList<Fruit>();
 
   k = new Knife();
-  s = new Sound_effects();
+  s = new Sound_effects(this);
 
   x = 0;
   y = height;
@@ -61,7 +61,7 @@ void setup()
 
   score = 0;
   
-  //s.bgm();
+  s.bgm();
 }
 
 
