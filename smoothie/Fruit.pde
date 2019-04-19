@@ -28,11 +28,11 @@ class Fruit {
       //if fruit is not sliced, it will move upwards then downwards in an arc path
       if (x<width/2) {
         x+=pr/2;
-        y-=pr;
+        y-=5;
       } else
       {
         x+=pr;
-        y+=pr;
+        y+=5;
       }
     }
   }
@@ -41,12 +41,11 @@ class Fruit {
   {
     if (!clicked) {
       image(a1, x, y);
-      //ellipse(x, y, r, r);
+   
     } else { 
       image(a2, x, y);
       image(a3, x+70, y);
-      //ellipse(x+70, y, r/2, r);
-      //ellipse(x, y, r/2, r);
+     
     }
   }
 }

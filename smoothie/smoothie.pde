@@ -19,7 +19,7 @@ PFont fo;
 
 float pmx=0;
 float pmy=0;
-
+Power_ups pow;
 boolean start;
 int score;
 
@@ -35,12 +35,12 @@ void setup()
   bim=loadImage("flo_nin.jpg");
 
   start = false;
-
+  pow= new Power_ups();
   background(im);
   pro=new int[10];
   for (int i =0; i<pro.length; i++)
   {
-    pro[i]=(int)random(3, 4);
+    pro[i]=(int)random(5, 10);
   }
   barr = new ArrayList<Bomb>();
 
@@ -73,25 +73,47 @@ void draw()
 
     k. display();
     background(im);
-    int i=0;
-    //if(frameCount%5==0){
-    // for (int i=0; i<arr.size(); i++) {
+ 
+    pow.display();
+
+   for (int i=0; i<arr.size(); i++) {
+
     arr.get(i).update(pro[i]);
     arr.get(i).display();
-
-    //if the fruit is sliced, the slices will drop rapidly and suddenly
-    //i++;
-    //}
-    //}
-    for (int t=0; t<barr.size(); t++)
-    {
-      //barr.update();
-      //barr.display();
-    }
-    text("Score: " + score, width/2 - 200, 100);
+    
+     text("Score: " + score, width/2 - 200, 100);
     if (arr.get(i).clicked) {
       score += 10;
+      pow.ready(score);
     }
+
+   }
+     if(frameCount%100==0)
+     {
+       if(arr.size()<10){
+      Fruit fff=new Fruit(x,y);
+     arr.add(fff);
+     
+    }
+     }
+  
+
+    //if the fruit is sliced, the slices will drop rapidly and suddenly
+    
+    for (int t=0; t<barr.size(); t++)
+    {
+      barr.get(t).update(3);
+      barr.get(t).display();
+    }
+     if(frameCount%200==0)
+     {
+       if(barr.size()<10){
+      Bomb fff=new Bomb(x,y);
+     barr.add(fff);
+     
+    }
+     }
+   
   } else {
     //if game not started, the main menu will be displayed
     background(bim);
