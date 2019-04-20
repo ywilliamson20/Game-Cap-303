@@ -15,7 +15,6 @@ class Bomb {
   //update location of bomb
   void update(int pr)
   {
-    
     if (x<width/2) {
         x+=pr;
         y-=5;
@@ -24,14 +23,14 @@ class Bomb {
         x+=pr;
         y+=5;
       }
+      
   }
 
   //display the bomb on screen
   void display()
   {
-
     fill(0);
     ellipse(x, y, r, r);
-    
+   
   }
 }

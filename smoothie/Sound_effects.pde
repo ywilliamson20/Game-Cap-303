@@ -26,6 +26,7 @@ class Sound_effects {
   }
   
   void slice(){
+    slice.rewind();
     slice.play();
   }
 }

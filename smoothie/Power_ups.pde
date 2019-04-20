@@ -5,20 +5,23 @@ class Power_ups {
     int y;
     boolean ready;
     int score;
+    color col;
     
   Power_ups() {
     //constructor
     x=700;
     y=50;
+    col=(200);
+    ready=false;
   }
 
   //indicators of the power ups will be displayed
   //once power up is ready the indicator will change color
   void display()
   {
-    fill(200);
+    fill(col);
     rect(x,y,50,50);
-    
+  
     
   }
 
@@ -26,24 +29,24 @@ class Power_ups {
   void ready(int scor)
   {
     score=scor;
-    if(score>50)
+    if(score>100)
     {
-      fill(255,255,0);
+      col=color(0, 0, 255);
+      ready=true;
+    }
+    
+    if(score>200)
+    {
+      col=color(255,0,0);
+       ready=true;
       
     }
     
-    else if(score>100)
-    {
-      fill(255,0,0);
-      
-      
-    }
-    
-    else if(score> 200)
+    if(score>300)
     {
       
-      fill(0,255,0);
-      
+      col=color(0,255,0);
+       ready=true;
     }
     
   }

@@ -1,7 +1,7 @@
 //Smoothie Warrior
 //By Lara Disuanco and Yvette Williamson
 import controlP5.*;
-import processing.sound.*; //for sounds
+
 //variables
 ControlP5 controlP5;
 
@@ -19,9 +19,12 @@ PFont fo;
 
 float pmx=0;
 float pmy=0;
+
 Power_ups pow;
 boolean start;
 int score;
+int sc;
+boolean cutt;
 
 //This function will setup the main menu and intialize objects and locations
 void setup()
@@ -75,16 +78,20 @@ void draw()
     background(im);
  
     pow.display();
-
+     fill(255,255,0);
+     text("Score: " + score, width/2 - 200, 100);
+     
+     //for fruit
    for (int i=0; i<arr.size(); i++) {
 
     arr.get(i).update(pro[i]);
     arr.get(i).display();
+    pow.ready(score);
     
-     text("Score: " + score, width/2 - 200, 100);
-    if (arr.get(i).clicked) {
-      score += 10;
-      pow.ready(score);
+    //for score
+    if (cutt) {
+      score=scoring();
+      cutt=false;
     }
 
    }
@@ -97,9 +104,7 @@ void draw()
     }
      }
   
-
-    //if the fruit is sliced, the slices will drop rapidly and suddenly
-    
+    //for bombs
     for (int t=0; t<barr.size(); t++)
     {
       barr.get(t).update(3);
@@ -149,8 +154,10 @@ void mouseDragged()
     if (d<arr.get(i).r)
     {
       arr.get(i).clicked=true; //if knife is in contact with fruit, cut fruit in half!
+      cutt=true;
     }
     s.slice(); //works, but only makes sound the first time
+    
   }
 }
 
@@ -162,4 +169,12 @@ void startButton() {
 //for quit button 
 void quitButton() {
   start = false;
+}
+
+//Keep track of score
+int scoring()
+{
+  sc+=10;
+  
+  return sc;
 }

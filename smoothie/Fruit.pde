@@ -5,7 +5,9 @@ class Fruit {
   float r;
   float x, y;
   boolean clicked;
+  boolean cut;
   PImage a1, a2, a3;
+  int sc;
 
   Fruit(float xx, float yy) {
     //Constructor
@@ -45,7 +47,8 @@ class Fruit {
     } else { 
       image(a2, x, y);
       image(a3, x+70, y);
-     
+       cut=true;
+      
     }
   }
 }
