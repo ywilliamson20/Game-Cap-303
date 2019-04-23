@@ -28,7 +28,8 @@ class Fruit {
     } else
     {
       //if fruit is not sliced, it will move upwards then downwards in an arc path
-      if (x<width/2) {
+      if (x<width/2) 
+      {
         x+=pr/2;
         y-=5;
       } else

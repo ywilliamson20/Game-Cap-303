@@ -10,6 +10,10 @@ ArrayList<Bomb> barr;
 ArrayList<Fruit> arr;
 Knife k;
 Sound_effects s;
+int rf=0;
+int rb=0;
+int j=0;
+int m=0;
 
 float x, y;
 
@@ -54,13 +58,6 @@ void setup()
 
   x = 0;
   y = height;
-  Fruit f = new Fruit(x, y);
-  arr.add(f);
-  fill(255, 0, 0);
-
-  Fruit f1 = new Fruit(x+50, y);
-  arr.add(f1);
-  fill(255, 0, 0);
 
   score = 0;
   
@@ -71,9 +68,11 @@ void setup()
 //This function will display all objects and track mouse for correct "slicing" of fruit
 void draw()
 {
+  rb=(int)random(100,400);
+  rf=(int)random(50,300);
   //when start button is pressed, start game
   if (start) {
-
+    
     k. display();
     background(im);
  
@@ -84,7 +83,7 @@ void draw()
      //for fruit
    for (int i=0; i<arr.size(); i++) {
 
-    arr.get(i).update(pro[i]);
+    arr.get(i).update(10);
     arr.get(i).display();
     pow.ready(score);
     
@@ -95,11 +94,19 @@ void draw()
     }
 
    }
-     if(frameCount%100==0)
+     if(frameCount%rf==0)
      {
-       if(arr.size()<10){
-      Fruit fff=new Fruit(x,y);
-     arr.add(fff);
+         m++;
+          println(arr.size());
+       if(m>9&&arr.get(7).y>height){
+         m=0;
+         // println("gotz here");
+         arr.clear();
+         
+     }
+      else if (m<9){
+        Fruit fff=new Fruit(x,y);
+       arr.add(fff);
      
     }
      }
@@ -110,9 +117,17 @@ void draw()
       barr.get(t).update(3);
       barr.get(t).display();
     }
-     if(frameCount%200==0)
+     if(frameCount%rb==0)
      {
-       if(barr.size()<10){
+       j++;
+       if(j>9&&barr.get(7).y>height){
+       j=0;
+       
+     barr.clear();
+      //println("got here");
+     }
+      else if (j<9){
+        //if(arr.size()<10){
       Bomb fff=new Bomb(x,y);
      barr.add(fff);
      
@@ -127,12 +142,14 @@ void draw()
     textFont(fo);
     textSize(80);
     text("Smoothie Warrior!", width/2 - 300, height/2-100);
-
-    for (int i=0; i<arr.size(); i++) {
-      arr.get(i).clicked=false;
-      arr.get(i).x=0+i*2;
-      arr.get(i).y=height;
-    }
+    
+    //reset
+    arr.clear();
+    //for (int i=0; i<arr.size(); i++) {
+    //  arr.get(i).clicked=false;
+    //  arr.get(i).x=0+i*2;
+    //  arr.get(i).y=height;
+    //}
   }
 }
 
@@ -151,10 +168,11 @@ void mouseDragged()
   line(pmx, pmy, mouseX, mouseY);
   for (int i=0; i<arr.size(); i++) {
     float d=dist(mouseX, mouseY, arr.get(i).x, arr.get(i).y);
-    if (d<arr.get(i).r)
+    if (d<arr.get(i).r&&!arr.get(i).clicked)
     {
       arr.get(i).clicked=true; //if knife is in contact with fruit, cut fruit in half!
       cutt=true;
+      
     }
     s.slice(); //works, but only makes sound the first time
     
@@ -174,7 +192,7 @@ void quitButton() {
 //Keep track of score
 int scoring()
 {
-  sc+=10;
+  sc+=20;
   
   return sc;
 }
