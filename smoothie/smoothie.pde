@@ -29,6 +29,7 @@ boolean start;
 int score;
 int sc;
 boolean cutt;
+boolean level1, level2;
 
 //This function will setup the main menu and intialize objects and locations
 void setup()
@@ -38,6 +39,8 @@ void setup()
   controlP5 = new ControlP5(this);
   controlP5.addButton("startButton").setValue(0).setPosition(10, 30).setSize(100, 60).setCaptionLabel("Start").getCaptionLabel().setSize(30);
   controlP5.addButton("quitButton").setValue(0).setPosition(10, 100).setSize(100, 60).setCaptionLabel("Quit").getCaptionLabel().setSize(30);
+  controlP5.addButton("lvl1Button").setValue(0).setPosition(10, 650).setSize(100, 60).setCaptionLabel("Level 1").getCaptionLabel().setSize(30);
+  controlP5.addButton("lvl2Button").setValue(0).setPosition(10, 720).setSize(100, 60).setCaptionLabel("Level 2").getCaptionLabel().setSize(30);
   im=loadImage("woodbac.jpg");
   bim=loadImage("flo_nin.jpg");
 
@@ -187,6 +190,20 @@ void startButton() {
 //for quit button 
 void quitButton() {
   start = false;
+}
+
+//for level 1 button 
+void lvl1Button() {
+  level1 = true;
+  level2 = false;
+  
+}
+
+//for level 2 button 
+void lvl2Button() {
+  level1 = false;
+  level2 = true;
+  
 }
 
 //Keep track of score
