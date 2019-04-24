@@ -106,6 +106,8 @@ void draw()
     {
       score=0;
       sc=0;
+      pow.restart();
+      //pow.
     }
     if (keyPressed) {
       if (key=='w'&& pow.ready1)
@@ -154,7 +156,6 @@ void draw()
       if (cutt) {
         score=scoring();
         cutt=false;
-        dissco=true;
       }
     }
     if (powpo==1)
@@ -238,12 +239,11 @@ void draw()
     //reset
     arr.clear();
     barr.clear();
-     
-     if(dissco){
+ 
     textSize(80);
     fill(66, 244, 155);
-    text("Score: " + score, width/2-150, height/2);
-     }
+    text("Score: " + score, width/2 - 200, height/2-200);
+
     pow.restart();
     savedTime = millis();
     m=0;
