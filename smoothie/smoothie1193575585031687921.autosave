@@ -30,7 +30,6 @@ boolean start;
 int score;
 int sc;
 boolean cutt;
-//boolean level1, level2;
 boolean level1;
 
 //This function will setup the main menu and intialize objects and locations
@@ -41,8 +40,7 @@ void setup()
   controlP5 = new ControlP5(this);
   //controlP5.addButton("startButton").setValue(0).setPosition(10, 30).setSize(100, 60).setCaptionLabel("Start").getCaptionLabel().setSize(30);
   //controlP5.addButton("quitButton").setValue(0).setPosition(10, 100).setSize(100, 60).setCaptionLabel("Quit").getCaptionLabel().setSize(30);
-  //  controlP5.addButton("lvl1Button").setValue(0).setPosition(10, 650).setSize(100, 60).setCaptionLabel("Level 1").getCaptionLabel().setSize(30);
-  //  controlP5.addButton("lvl2Button").setValue(0).setPosition(10, 720).setSize(100, 60).setCaptionLabel("Level 2").getCaptionLabel().setSize(30);
+  
   im=loadImage("woodbac.jpg");
   bim=loadImage("flo_nin.jpg");
 
@@ -55,7 +53,7 @@ void setup()
   for (int i =0; i<pro.length; i++)
   {
     prob[i]=(int)random(3, 6);
-    pro[i]=(int)random(3, 10);
+    pro[i]=(int)random(5, 10);
   }
   barr = new ArrayList<Bomb>();
 
@@ -120,26 +118,26 @@ void draw()
     k. display();
     background(im);
     
-    fill(0);     //create start button for while in game
+    fill(0);     //create start button
     rect(10, 30, 100, 60);
     textSize(30);
     fill(249, 209, 4);
-    text("Start", 22, 70);
+    text("Start", 10, 30);
 
-    fill(0);  //create quit button for while in game
+    fill(0);  //create quit button
     rect(10, 100, 100, 60);
     textSize(30);
     fill(249, 209, 4);
-    text("Quit", 25, 140);
+    text("Quit", 10, 100);
 
     pow.display();
-    fill(249, 209, 4);
+    fill(255, 255, 0);
     text("Score: " + score, width/2 - 200, 100);
 
     //for fruit
     for (int i=0; i<arr.size(); i++) {
 
-      arr.get(i).update(pro[i]);
+      arr.get(i).update(10);
       arr.get(i).display();
       pow.ready(score);
 
@@ -188,7 +186,7 @@ void draw()
     //for bombs
     for (int t=0; t<barr.size(); t++)
     {
-      barr.get(t).update(prob[t]);
+      barr.get(t).update(3);
       barr.get(t).display();
     }
     if (frameCount%rb==0)
@@ -213,25 +211,9 @@ void draw()
     textFont(fo);
     textSize(80);
     text("Smoothie Warrior!", width/2 - 300, height/2-100);
-    
-    fill(0);     //start button
-    rect(10, 30, 100, 60);
-    textSize(30);
-    fill(249, 209, 4);
-    text("Start", 22, 70);
-
-    fill(0);  //quit button
-    rect(10, 100, 100, 60);
-    textSize(30);
-    fill(249, 209, 4);
-    text("Quit", 25, 140);
 
     //reset
     arr.clear();
-    barr.clear();
-    score=0;
-    pow.restart();
-
     //for (int i=0; i<arr.size(); i++) {
     //  arr.get(i).clicked=false;
     //  arr.get(i).x=0+i*2;
@@ -266,16 +248,7 @@ void mousePressed()
   if (!start){
     if (mouseX > 10 && mouseX < 10+100 && mouseY > 170 && mouseY < 170+60){
     level1 = !level1;
-    println(level1);
     }
-  }
-  if (mouseX > 10 && mouseX < 10+100 && mouseY > 30 && mouseY < 30+60) { //start button
-    start = true;
-    println(start);
-  }
-  if (mouseX > 10 && mouseX < 10+100 && mouseY > 100 && mouseY < 100+60) { //start button
-    start = false;
-    println(start);
   }
 }
 
@@ -294,7 +267,7 @@ void mouseDragged()
   }
 }
 
-/*//start button
+//start button
 void startButton() {
   start = true;
 }
@@ -304,7 +277,7 @@ void quitButton() {
   start = false;
 }
 
-//for level 1 button 
+/*//for level 1 button 
  void lvl1Button() {
  level1 = true;
  level2 = false;
