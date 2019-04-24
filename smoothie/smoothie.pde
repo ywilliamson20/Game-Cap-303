@@ -33,6 +33,9 @@ boolean cutt;
 //boolean level1, level2;
 boolean level1;
 
+int savedTime;
+int totalTime;
+
 //This function will setup the main menu and intialize objects and locations
 void setup()
 {
@@ -70,6 +73,9 @@ void setup()
   score = 0;
 
   s.bgm();
+
+  savedTime = millis();
+  totalTime = 60000; //one minute
 }
 
 
@@ -80,46 +86,48 @@ void draw()
 
   rb=(int)random(100, 400);
   rf=(int)random(50, 300);
-   if(level1)
+  if (level1)
   {
-    rb=(int)random(100,400);
-    rf=(int)random(50,300);
+    rb=(int)random(100, 400);
+    rf=(int)random(50, 300);
     //println("twoos");
-  }
-  else
+  } else
   {
-    rb=(int)random(10,100);
-    rf=(int)random(10,50);
+    rb=(int)random(10, 100);
+    rf=(int)random(10, 50);
     //println("oonee");
-    
   }
 
   //when start button is pressed, start game
   if (start) {
-     if(keyPressed){
-      if(key=='w'&& pow.ready1)
+    //timer
+    int passedTime = millis() - savedTime;
+    if (passedTime > totalTime) {
+      start = false;
+      background(255);
+      textSize(80);
+      text("Game Over!", 300, 400);
+      savedTime = millis();
+    }
+    println("Passed Time: " + passedTime);
+    
+    if (keyPressed) {
+      if (key=='w'&& pow.ready1)
       {
 
         powpo=1;
-   
-      }
-      else if(key=='a'&& pow.ready2)
+      } else if (key=='a'&& pow.ready2)
       {
-         powpo=2;
-
-      }
-      else if(key=='s'&& pow.ready3)
+        powpo=2;
+      } else if (key=='s'&& pow.ready3)
       {
         powpo=3;
-  
-        
       }
-      
-   }
+    }
 
     k. display();
     background(im);
-    
+
     fill(0);     //create start button for while in game
     rect(10, 30, 100, 60);
     textSize(30);
@@ -135,6 +143,9 @@ void draw()
     pow.display();
     fill(249, 209, 4);
     text("Score: " + score, width/2 - 200, 100);
+    
+    fill(249, 209, 4);
+    text("Timer: " + passedTime/1000, width/2 - 200, 60);
 
     //for fruit
     for (int i=0; i<arr.size(); i++) {
@@ -149,26 +160,23 @@ void draw()
         cutt=false;
       }
     }
-     if(powpo==1)
+    if (powpo==1)
     {
       rf=10;
       //println("got here");
     }
-    if(powpo==3)
+    if (powpo==3)
     {
       rf=400;
-       
     }
-     if(powpo==2)
+    if (powpo==2)
     {
       rf=400;
       //println("got here");
     }
-    if(powpo==3)
+    if (powpo==3)
     {
       rf=400;
-      
-      
     }
 
     if (frameCount%rf==0)
@@ -213,7 +221,7 @@ void draw()
     textFont(fo);
     textSize(80);
     text("Smoothie Warrior!", width/2 - 300, height/2-100);
-    
+
     fill(0);     //start button
     rect(10, 30, 100, 60);
     textSize(30);
@@ -251,7 +259,6 @@ void draw()
       fill(249, 209, 4);
       text("Level 2", 15, 210);
     }
-    
   }
 }
 
@@ -262,11 +269,11 @@ void mousePressed()
     pmx = mouseX;
     pmy = mouseY;
   }
-   //rect(10, 170, 100, 60);
-  if (!start){
-    if (mouseX > 10 && mouseX < 10+100 && mouseY > 170 && mouseY < 170+60){
-    level1 = !level1;
-    println(level1);
+  //rect(10, 170, 100, 60);
+  if (!start) {
+    if (mouseX > 10 && mouseX < 10+100 && mouseY > 170 && mouseY < 170+60) {
+      level1 = !level1;
+      println(level1);
     }
   }
   if (mouseX > 10 && mouseX < 10+100 && mouseY > 30 && mouseY < 30+60) { //start button
@@ -295,16 +302,16 @@ void mouseDragged()
 }
 
 /*//start button
-void startButton() {
-  start = true;
-}
-
-//for quit button 
-void quitButton() {
-  start = false;
-}
-
-//for level 1 button 
+ void startButton() {
+ start = true;
+ }
+ 
+ //for quit button 
+ void quitButton() {
+ start = false;
+ }
+ 
+ //for level 1 button 
  void lvl1Button() {
  level1 = true;
  level2 = false;
