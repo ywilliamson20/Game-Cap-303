@@ -29,7 +29,8 @@ boolean start;
 int score;
 int sc;
 boolean cutt;
-boolean level1, level2;
+//boolean level1, level2;
+boolean level1;
 
 //This function will setup the main menu and intialize objects and locations
 void setup()
@@ -39,12 +40,13 @@ void setup()
   controlP5 = new ControlP5(this);
   controlP5.addButton("startButton").setValue(0).setPosition(10, 30).setSize(100, 60).setCaptionLabel("Start").getCaptionLabel().setSize(30);
   controlP5.addButton("quitButton").setValue(0).setPosition(10, 100).setSize(100, 60).setCaptionLabel("Quit").getCaptionLabel().setSize(30);
-  controlP5.addButton("lvl1Button").setValue(0).setPosition(10, 650).setSize(100, 60).setCaptionLabel("Level 1").getCaptionLabel().setSize(30);
-  controlP5.addButton("lvl2Button").setValue(0).setPosition(10, 720).setSize(100, 60).setCaptionLabel("Level 2").getCaptionLabel().setSize(30);
+  //  controlP5.addButton("lvl1Button").setValue(0).setPosition(10, 650).setSize(100, 60).setCaptionLabel("Level 1").getCaptionLabel().setSize(30);
+  //  controlP5.addButton("lvl2Button").setValue(0).setPosition(10, 720).setSize(100, 60).setCaptionLabel("Level 2").getCaptionLabel().setSize(30);
   im=loadImage("woodbac.jpg");
   bim=loadImage("flo_nin.jpg");
 
   start = false;
+  level1 = true;
   pow= new Power_ups();
   background(im);
   pro=new int[10];
@@ -63,80 +65,75 @@ void setup()
   y = height;
 
   score = 0;
-  
+
   s.bgm();
 }
 
 
 //This function will display all objects and track mouse for correct "slicing" of fruit
 void draw()
-{
-  rb=(int)random(100,400);
-  rf=(int)random(50,300);
+{ 
+  //must decide between level 1 or 2 before pressing start
+
+  rb=(int)random(100, 400);
+  rf=(int)random(50, 300);
   //when start button is pressed, start game
   if (start) {
-    
+
     k. display();
     background(im);
- 
+
     pow.display();
-     fill(255,255,0);
-     text("Score: " + score, width/2 - 200, 100);
-     
-     //for fruit
-   for (int i=0; i<arr.size(); i++) {
+    fill(255, 255, 0);
+    text("Score: " + score, width/2 - 200, 100);
 
-    arr.get(i).update(10);
-    arr.get(i).display();
-    pow.ready(score);
-    
-    //for score
-    if (cutt) {
-      score=scoring();
-      cutt=false;
+    //for fruit
+    for (int i=0; i<arr.size(); i++) {
+
+      arr.get(i).update(10);
+      arr.get(i).display();
+      pow.ready(score);
+
+      //for score
+      if (cutt) {
+        score=scoring();
+        cutt=false;
+      }
+    }
+    if (frameCount%rf==0)
+    {
+      m++;
+      println(arr.size());
+      if (m>9&&arr.get(7).y>height) {
+        m=0;
+        // println("gotz here");
+        arr.clear();
+      } else if (m<9) {
+        Fruit fff=new Fruit(x, y);
+        arr.add(fff);
+      }
     }
 
-   }
-     if(frameCount%rf==0)
-     {
-         m++;
-          println(arr.size());
-       if(m>9&&arr.get(7).y>height){
-         m=0;
-         // println("gotz here");
-         arr.clear();
-         
-     }
-      else if (m<9){
-        Fruit fff=new Fruit(x,y);
-       arr.add(fff);
-     
-    }
-     }
-  
     //for bombs
     for (int t=0; t<barr.size(); t++)
     {
       barr.get(t).update(3);
       barr.get(t).display();
     }
-     if(frameCount%rb==0)
-     {
-       j++;
-       if(j>9&&barr.get(7).y>height){
-       j=0;
-       
-     barr.clear();
-      //println("got here");
-     }
-      else if (j<9){
+    if (frameCount%rb==0)
+    {
+      j++;
+      if (j>9&&barr.get(7).y>height) {
+        j=0;
+
+        barr.clear();
+        //println("got here");
+      } else if (j<9) {
         //if(arr.size()<10){
-      Bomb fff=new Bomb(x,y);
-     barr.add(fff);
-     
+        Bomb fff=new Bomb(x, y);
+        barr.add(fff);
+      }
     }
-     }
-   
   } else {
     //if game not started, the main menu will be displayed
     background(bim);
@@ -145,7 +142,7 @@ void draw()
     textFont(fo);
     textSize(80);
     text("Smoothie Warrior!", width/2 - 300, height/2-100);
-    
+
     //reset
     arr.clear();
     //for (int i=0; i<arr.size(); i++) {
@@ -153,6 +150,21 @@ void draw()
     //  arr.get(i).x=0+i*2;
     //  arr.get(i).y=height;
     //}
+
+    if (level1) {
+      fill(0);
+      rect(10, 170, 100, 60);
+      textSize(30);
+      fill(249, 209, 4);
+      text("Level 1", 15, 210);
+    } else {
+      fill(0);
+      rect(10, 170, 100, 60);
+      textSize(30);
+      fill(249, 209, 4);
+      text("Level 2", 15, 210);
+    }
+    
   }
 }
 
@@ -162,6 +174,12 @@ void mousePressed()
   for (int i=0; i<arr.size(); i++) {
     pmx = mouseX;
     pmy = mouseY;
+  }
+   //rect(10, 170, 100, 60);
+  if (!start){
+    if (mouseX > 10 && mouseX < 10+100 && mouseY > 170 && mouseY < 170+60){
+    level1 = !level1;
+    }
   }
 }
 
@@ -175,10 +193,8 @@ void mouseDragged()
     {
       arr.get(i).clicked=true; //if knife is in contact with fruit, cut fruit in half!
       cutt=true;
-      
     }
     s.slice(); //works, but only makes sound the first time
-    
   }
 }
 
@@ -192,24 +208,26 @@ void quitButton() {
   start = false;
 }
 
-//for level 1 button 
-void lvl1Button() {
-  level1 = true;
-  level2 = false;
-  
-}
-
-//for level 2 button 
-void lvl2Button() {
-  level1 = false;
-  level2 = true;
-  
-}
+/*//for level 1 button 
+ void lvl1Button() {
+ level1 = true;
+ level2 = false;
+ //controlP5.getController("startButton").setPosition(10, 30);
+ //controlP5.getController("quitButton").setPosition(10, 100);
+ 
+ }
+ 
+ //for level 2 button 
+ void lvl2Button() {
+ level1 = false;
+ level2 = true;
+ 
+ }*/
 
 //Keep track of score
 int scoring()
 {
   sc+=20;
-  
+
   return sc;
 }
