@@ -240,7 +240,7 @@ void draw()
  
     textSize(80);
     fill(66, 244, 155);
-    text("Score: " + score, width/2 - 200, height/2-200);
+    text("Score: " + score, width/2-150, height/2);
 
     pow.restart();
     savedTime = millis();
