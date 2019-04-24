@@ -16,14 +16,16 @@ class Bomb {
   void update(int pr)
   {
     if (x<width/2) {
-        x+=pr;
-        y-=5;
-      } else
-      {
-        x+=pr;
-        y+=5;
-      }
-      
+      x+=pr;
+      y-=5;
+    } else
+    {
+      x+=pr;
+      y+=5;
+    }
+    if (clicked) {
+      start = false;
+    }
   }
 
   //display the bomb on screen
@@ -31,6 +33,5 @@ class Bomb {
   {
     fill(0);
     ellipse(x, y, r, r);
-   
   }
 }

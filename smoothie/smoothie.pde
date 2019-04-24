@@ -291,6 +291,17 @@ void mouseDragged()
     }
     s.slice(); //works, but only makes sound the first time
   }
+  
+  for (int i=0; i<barr.size(); i++) {
+    float d=dist(mouseX, mouseY, barr.get(i).x, barr.get(i).y);
+    if (d<barr.get(i).r&&!barr.get(i).clicked)
+    {
+      barr.get(i).clicked=true;
+      cutt=true;
+    }
+    s.slice(); //works, but only makes sound the first time
+  }
+  
 }
 
 //Keep track of score
