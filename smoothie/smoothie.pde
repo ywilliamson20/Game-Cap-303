@@ -311,7 +311,7 @@ void mouseDragged()
       barr.get(i).clicked=true;
       cutt=true;
     }
-    s.slice(); //works, but only makes sound the first time
+    s.slice();
   }
   
 }

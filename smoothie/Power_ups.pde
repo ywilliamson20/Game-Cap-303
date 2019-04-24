@@ -8,6 +8,7 @@ class Power_ups {
     boolean ready3;
     int score;
     color col;
+    String keyboard;
     
   Power_ups() {
     //constructor
@@ -17,6 +18,7 @@ class Power_ups {
     ready1=false;
     ready2=false;
     ready3=false;
+    keyboard="";
   }
 
   //indicators of the power ups will be displayed
@@ -25,6 +27,10 @@ class Power_ups {
   {
     fill(col);
     rect(x,y,50,50);
+    fill(255);
+    textSize(50);
+    text(keyboard, x+10, y+40);
+    textSize(30);
   
     
   }
@@ -37,6 +43,7 @@ class Power_ups {
     {
       col=color(0, 0, 255);
       ready1=true;
+      keyboard = "w";
       //dec=-100;
     }
     
@@ -44,6 +51,7 @@ class Power_ups {
     {
       col=color(255,0,0);
       ready2=true;
+      keyboard = "a";
       //ready1=false;
       //dec=-200;
     }
@@ -53,6 +61,7 @@ class Power_ups {
       
       col=color(0,255,0);
       ready3=true;
+      keyboard  = "s";
        //dec=-300;
     }
     //return dec;
