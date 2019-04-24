@@ -5,6 +5,7 @@ import controlP5.*;
 //variables
 ControlP5 controlP5;
 
+int [] prob;
 int [] pro;
 ArrayList<Bomb> barr;
 ArrayList<Fruit> arr;
@@ -23,7 +24,7 @@ PFont fo;
 
 float pmx=0;
 float pmy=0;
-
+int powpo;
 Power_ups pow;
 boolean start;
 int score;
@@ -50,8 +51,10 @@ void setup()
   pow= new Power_ups();
   background(im);
   pro=new int[10];
+  prob=new int[10];
   for (int i =0; i<pro.length; i++)
   {
+    prob[i]=(int)random(3, 6);
     pro[i]=(int)random(5, 10);
   }
   barr = new ArrayList<Bomb>();
@@ -77,8 +80,42 @@ void draw()
 
   rb=(int)random(100, 400);
   rf=(int)random(50, 300);
+   if(level1)
+  {
+    rb=(int)random(100,400);
+    rf=(int)random(50,300);
+    //println("twoos");
+  }
+  else
+  {
+    rb=(int)random(10,100);
+    rf=(int)random(10,50);
+    //println("oonee");
+    
+  }
+
   //when start button is pressed, start game
   if (start) {
+     if(keyPressed){
+      if(key=='w'&& pow.ready1)
+      {
+
+        powpo=1;
+   
+      }
+      else if(key=='a'&& pow.ready2)
+      {
+         powpo=2;
+
+      }
+      else if(key=='s'&& pow.ready3)
+      {
+        powpo=3;
+  
+        
+      }
+      
+   }
 
     k. display();
     background(im);
@@ -100,6 +137,28 @@ void draw()
         cutt=false;
       }
     }
+     if(powpo==1)
+    {
+      rf=10;
+      //println("got here");
+    }
+    if(powpo==3)
+    {
+      rf=400;
+       
+    }
+     if(powpo==2)
+    {
+      rf=400;
+      //println("got here");
+    }
+    if(powpo==3)
+    {
+      rf=400;
+      
+      
+    }
+
     if (frameCount%rf==0)
     {
       m++;

@@ -3,7 +3,9 @@ class Power_ups {
   //variables here
     int x;
     int y;
-    boolean ready;
+    boolean ready1;
+    boolean ready2;
+    boolean ready3;
     int score;
     color col;
     
@@ -12,7 +14,9 @@ class Power_ups {
     x=700;
     y=50;
     col=(200);
-    ready=false;
+    ready1=false;
+    ready2=false;
+    ready3=false;
   }
 
   //indicators of the power ups will be displayed
@@ -32,23 +36,26 @@ class Power_ups {
     if(score>100)
     {
       col=color(0, 0, 255);
-      ready=true;
+      ready1=true;
+      //dec=-100;
     }
     
     if(score>200)
     {
       col=color(255,0,0);
-       ready=true;
-      
+      ready2=true;
+      //ready1=false;
+      //dec=-200;
     }
     
     if(score>300)
     {
       
       col=color(0,255,0);
-       ready=true;
+      ready3=true;
+       //dec=-300;
     }
-    
+    //return dec;
   }
 
   //the power ups will go away at the end of a level
@@ -57,6 +64,10 @@ class Power_ups {
   {
    score=0;
     fill(200);
+    ready1=false;
+    ready2=false;
+    ready3=false;
     
   }
+  
 }
