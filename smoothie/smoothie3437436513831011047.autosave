@@ -18,7 +18,7 @@ float x, y;
 PImage im;
 PImage bim;
 PFont fo;
-boolean dissco;
+boolean dissco
 float pmx=0;
 float pmy=0;
 int powpo;
@@ -39,7 +39,7 @@ void setup()
 
   im=loadImage("woodbac.jpg");
   bim=loadImage("flo_nin.jpg");
-  dissco=false;
+
   start = false;
   level1 = true;
   pow= new Power_ups();
@@ -91,7 +91,6 @@ void draw()
 
   //when start button is pressed, start game
   if (start) {
-    
     //timer
     int passedTime = millis() - savedTime;
     if (passedTime > totalTime) {
@@ -101,12 +100,8 @@ void draw()
       text("Game Over!", 300, 400);
       savedTime = millis();
     }
-    //println("Passed Time: " + passedTime);
-      if(passedTime/1000==0)
-    {
-      score=0;
-      sc=0;
-    }
+    println("Passed Time: " + passedTime);
+
     if (keyPressed) {
       if (key=='w'&& pow.ready1)
       {
@@ -123,7 +118,7 @@ void draw()
 
     k. display();
     background(im);
-    
+
     fill(0);     //create start button for while in game
     rect(10, 30, 100, 60);
     textSize(30);
@@ -237,16 +232,17 @@ void draw()
     //reset
     arr.clear();
     barr.clear();
- 
-    textSize(80);
-    fill(66, 244, 155);
-    text("Score: " + score, width/2 - 200, height/2-200);
-
+    score=0;
     pow.restart();
     savedTime = millis();
     m=0;
     j=0;
 
+    //for (int i=0; i<arr.size(); i++) {
+    //  arr.get(i).clicked=false;
+    //  arr.get(i).x=0+i*2;
+    //  arr.get(i).y=height;
+    //}
 
     if (level1) {
       fill(0);
@@ -280,12 +276,10 @@ void mousePressed()
   }
   if (mouseX > 10 && mouseX < 10+100 && mouseY > 30 && mouseY < 30+60) { //start button
     start = true;
-        //score=0;
     //println(start);
   }
   if (mouseX > 10 && mouseX < 10+100 && mouseY > 100 && mouseY < 100+60) { //start button
     start = false;
-
     //println(start);
   }
 }
@@ -303,17 +297,6 @@ void mouseDragged()
     }
     s.slice(); //works, but only makes sound the first time
   }
-  
-  for (int i=0; i<barr.size(); i++) {
-    float d=dist(mouseX, mouseY, barr.get(i).x, barr.get(i).y);
-    if (d<barr.get(i).r&&!barr.get(i).clicked)
-    {
-      barr.get(i).clicked=true;
-      cutt=true;
-    }
-    s.slice(); //works, but only makes sound the first time
-  }
-  
 }
 
 //Keep track of score
