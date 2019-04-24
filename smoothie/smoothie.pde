@@ -160,16 +160,8 @@ void draw()
     {
       rf=400;
     }
-    if (powpo==2)
-    {
-      rf=400;
-      //println("got here");
-    }
-    if (powpo==3)
-    {
-      rf=400;
-    }
-
+  
+   
     if (frameCount%rf==0)
     {
       m++;
@@ -190,6 +182,18 @@ void draw()
       barr.get(t).update(prob[t]);
       barr.get(t).display();
     }
+         if(powpo==2)
+    {
+      rb=400;
+      //println("got here");
+    }
+    if(powpo==3)
+    {
+      rb=400;
+      
+      
+    }
+
     if (frameCount%rb==0)
     {
       j++;
@@ -231,6 +235,8 @@ void draw()
     score=0;
     pow.restart();
     savedTime = millis();
+    m=0;
+    j=0;
 
     //for (int i=0; i<arr.size(); i++) {
     //  arr.get(i).clicked=false;
