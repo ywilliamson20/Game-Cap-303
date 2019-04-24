@@ -106,6 +106,8 @@ void draw()
     {
       score=0;
       sc=0;
+      pow.col=color(200);
+      pow.keyboard="";
     }
     if (keyPressed) {
       if (key=='w'&& pow.ready1)
