@@ -23,6 +23,8 @@ class Bomb {
       x+=pr;
       y+=5;
     }
+    
+    //bomb is touched/sliced, game resets
     if (clicked) {
       start = false;
     }

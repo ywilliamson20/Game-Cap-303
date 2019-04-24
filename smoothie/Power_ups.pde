@@ -22,7 +22,7 @@ class Power_ups {
   }
 
   //indicators of the power ups will be displayed
-  //once power up is ready the indicator will change color
+  //once power up is ready the indicator will change color and display letter corresponding to power up
   void display()
   {
     fill(col);
@@ -41,30 +41,31 @@ class Power_ups {
     score=scor;
     if(score>100)
     {
+      //more fruit
       col=color(0, 0, 255);
       ready1=true;
       keyboard = "w";
-      //dec=-100;
+  
     }
     
     if(score>200)
     {
+      //less bombs
       col=color(255,0,0);
       ready2=true;
       keyboard = "a";
-      //ready1=false;
-      //dec=-200;
+
     }
     
     if(score>300)
     {
-      
+      //slow down time
       col=color(0,255,0);
       ready3=true;
       keyboard  = "s";
-       //dec=-300;
+   
     }
-    //return dec;
+    
   }
 
   //the power ups will go away at the end of a level
