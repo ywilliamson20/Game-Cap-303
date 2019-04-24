@@ -24,9 +24,9 @@ class Sound_effects {
   {
     bg.play();
   }
-  
+
   //for slice sound
-  void slice(){
+  void slice() {
     slice.rewind();
     slice.play();
   }

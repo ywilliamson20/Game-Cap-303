@@ -44,12 +44,10 @@ class Fruit {
   {
     if (!clicked) {
       image(a1, x, y);
-   
     } else { 
       image(a2, x, y);
       image(a3, x+70, y);
-       cut=true;
-      
+      cut=true;
     }
   }
 }
