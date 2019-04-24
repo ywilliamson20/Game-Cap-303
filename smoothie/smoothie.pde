@@ -1,10 +1,7 @@
 //Smoothie Warrior
 //By Lara Disuanco and Yvette Williamson
-import controlP5.*;
 
 //variables
-ControlP5 controlP5;
-
 int [] prob;
 int [] pro;
 ArrayList<Bomb> barr;
@@ -30,7 +27,6 @@ boolean start;
 int score;
 int sc;
 boolean cutt;
-//boolean level1, level2;
 boolean level1;
 
 int savedTime;
@@ -41,11 +37,6 @@ void setup()
 {
   size(800, 800);
 
-  controlP5 = new ControlP5(this);
-  //controlP5.addButton("startButton").setValue(0).setPosition(10, 30).setSize(100, 60).setCaptionLabel("Start").getCaptionLabel().setSize(30);
-  //controlP5.addButton("quitButton").setValue(0).setPosition(10, 100).setSize(100, 60).setCaptionLabel("Quit").getCaptionLabel().setSize(30);
-  //  controlP5.addButton("lvl1Button").setValue(0).setPosition(10, 650).setSize(100, 60).setCaptionLabel("Level 1").getCaptionLabel().setSize(30);
-  //  controlP5.addButton("lvl2Button").setValue(0).setPosition(10, 720).setSize(100, 60).setCaptionLabel("Level 2").getCaptionLabel().setSize(30);
   im=loadImage("woodbac.jpg");
   bim=loadImage("flo_nin.jpg");
 
@@ -110,7 +101,7 @@ void draw()
       savedTime = millis();
     }
     println("Passed Time: " + passedTime);
-    
+
     if (keyPressed) {
       if (key=='w'&& pow.ready1)
       {
@@ -143,7 +134,7 @@ void draw()
     pow.display();
     fill(249, 209, 4);
     text("Score: " + score, width/2 - 200, 100);
-    
+
     fill(249, 209, 4);
     text("Timer: " + passedTime/1000, width/2 - 200, 60);
 
@@ -239,6 +230,7 @@ void draw()
     barr.clear();
     score=0;
     pow.restart();
+    savedTime = millis();
 
     //for (int i=0; i<arr.size(); i++) {
     //  arr.get(i).clicked=false;
@@ -273,16 +265,16 @@ void mousePressed()
   if (!start) {
     if (mouseX > 10 && mouseX < 10+100 && mouseY > 170 && mouseY < 170+60) {
       level1 = !level1;
-      println(level1);
+      //println(level1);
     }
   }
   if (mouseX > 10 && mouseX < 10+100 && mouseY > 30 && mouseY < 30+60) { //start button
     start = true;
-    println(start);
+    //println(start);
   }
   if (mouseX > 10 && mouseX < 10+100 && mouseY > 100 && mouseY < 100+60) { //start button
     start = false;
-    println(start);
+    //println(start);
   }
 }
 
@@ -300,32 +292,6 @@ void mouseDragged()
     s.slice(); //works, but only makes sound the first time
   }
 }
-
-/*//start button
- void startButton() {
- start = true;
- }
- 
- //for quit button 
- void quitButton() {
- start = false;
- }
- 
- //for level 1 button 
- void lvl1Button() {
- level1 = true;
- level2 = false;
- //controlP5.getController("startButton").setPosition(10, 30);
- //controlP5.getController("quitButton").setPosition(10, 100);
- 
- }
- 
- //for level 2 button 
- void lvl2Button() {
- level1 = false;
- level2 = true;
- 
- }*/
 
 //Keep track of score
 int scoring()
