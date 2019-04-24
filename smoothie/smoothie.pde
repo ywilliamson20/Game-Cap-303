@@ -55,7 +55,7 @@ void setup()
   for (int i =0; i<pro.length; i++)
   {
     prob[i]=(int)random(3, 6);
-    pro[i]=(int)random(5, 10);
+    pro[i]=(int)random(3, 10);
   }
   barr = new ArrayList<Bomb>();
 
@@ -127,7 +127,7 @@ void draw()
     //for fruit
     for (int i=0; i<arr.size(); i++) {
 
-      arr.get(i).update(10);
+      arr.get(i).update(pro[i]);
       arr.get(i).display();
       pow.ready(score);
 
@@ -176,7 +176,7 @@ void draw()
     //for bombs
     for (int t=0; t<barr.size(); t++)
     {
-      barr.get(t).update(3);
+      barr.get(t).update(prob[t]);
       barr.get(t).display();
     }
     if (frameCount%rb==0)
@@ -204,6 +204,10 @@ void draw()
 
     //reset
     arr.clear();
+    barr.clear();
+    score=0;
+    pow.restart();
+
     //for (int i=0; i<arr.size(); i++) {
     //  arr.get(i).clicked=false;
     //  arr.get(i).x=0+i*2;
